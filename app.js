@@ -27,11 +27,11 @@ function cameraStart() {
 
 function drawFrame() {
 	cameraSensor.width = cameraView.videoWidth
-    cameraSensor.height = cameraView.videoHeight
+	cameraSensor.height = cameraView.videoHeight
 	context = cameraSensor.getContext("2d")
 	context.drawImage(cameraView, 0, 0)
 	setTimeout(function() {
-		drawFrame(); 
+		drawFrame()
 		}, 1000/30)
 }
 // Take a picture when cameraTrigger is tapped
@@ -41,6 +41,18 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
     cameraOutput.src = cameraSensor.toDataURL("image/webp")
     cameraOutput.classList.add("taken")
+	
+	Tesseract.recognize(cameraSensor.getContext("2d"))
+		.progress(function(message) {
+		  console.log(message)
+		})
+		.then(function(result) {
+		  alert(result.text)
+		})
+		.catch(function(err) {
+		  console.error(err)
+		});
 };
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
+
