@@ -3,7 +3,6 @@ var constraints = {
 	video: 
 		{ 
 		facingMode: "environment",
-		deviceId: undefined
 		}, 
 	audio: false 
 	};
