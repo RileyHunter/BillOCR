@@ -1,21 +1,23 @@
-html, body{
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
 }
 
-#camera, #camera--view, #camera--sensor, #camera--output{
+#camera, #camera--view, #camera--sensor, #camera--output {
     position: fixed;
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-#camera--view{
+#camera--view {
+	-webkit-transform: scaleX(-1);
 	transform: scaleX(-1);
+}
 
-#camera--trigger{
+#camera--trigger {
     width: 200px;
     background-color: black;
     color: white;
@@ -30,7 +32,7 @@ html, body{
     left: calc(50% - 100px);
 }
 
-.taken{
+.taken {
     height: 100px!important;
     width: 100px!important;
     transition: all 0.5s ease-in;
