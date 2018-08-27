@@ -29,8 +29,8 @@ function drawFrame() {
 	cameraSensor.width = cameraView.videoWidth
     cameraSensor.height = cameraView.videoHeight
 	context = cameraSensor.getContext("2d")
-	context.translate(cameraView.videoWidth, 0)
-	context.scale(-1, 1)
+	//context.translate(cameraView.videoWidth, 0)
+	//context.scale(-1, 1)
 	context.drawImage(cameraView, 0, 0)
 	setTimeout(function() {
 		drawFrame(); 
