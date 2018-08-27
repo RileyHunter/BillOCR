@@ -18,7 +18,6 @@ function cameraStart() {
         .then(function(stream) {
         track = stream.getTracks()[0];
         cameraView.srcObject = stream;
-		context = cameraSensor.getContext("2d");
 		drawFrame();
     })
     .catch(function(error) {
@@ -27,10 +26,13 @@ function cameraStart() {
 }
 
 function drawFrame() {
+	cameraSensor.width = cameraView.videoWidth;
+    cameraSensor.height = cameraView.videoHeight;
+	context = cameraSensor.getContext("2d");
 	context.drawImage(cameraView, 0, 0)
 	setTimeout(function() {
 		drawFrame(); 
-		}, 0)
+		}, 1000/30)
 }
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
