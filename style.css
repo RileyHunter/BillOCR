@@ -4,16 +4,14 @@ html, body{
   height: 100%;
   width: 100%;
 }
+
 #camera, #camera--view, #camera--sensor, #camera--output{
     position: fixed;
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
-#camera--view, #camera--sensor, #camera--output{
-    transform: scaleX(-1);
-    filter: FlipH;
-}
+
 #camera--trigger{
     width: 200px;
     background-color: black;
@@ -28,6 +26,7 @@ html, body{
     bottom: 30px;
     left: calc(50% - 100px);
 }
+
 .taken{
     height: 100px!important;
     width: 100px!important;
