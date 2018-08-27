@@ -12,6 +12,9 @@ html, body{
     object-fit: cover;
 }
 
+#camera--view{
+	transform: scaleX(-1);
+
 #camera--trigger{
     width: 200px;
     background-color: black;
