@@ -29,8 +29,10 @@ function drawFrame() {
 	cameraSensor.width = cameraView.videoWidth
     cameraSensor.height = cameraView.videoHeight
 	context = cameraSensor.getContext("2d")
-	//context.translate(cameraView.videoWidth, 0)
-	//context.scale(-1, 1)
+	if (!/Mobi|Android/i.test(navigator.userAgent)) {
+    	context.translate(cameraView.videoWidth, 0)
+		context.scale(-1, 1)
+	}
 	context.drawImage(cameraView, 0, 0)
 	setTimeout(function() {
 		drawFrame(); 
