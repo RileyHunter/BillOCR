@@ -53,7 +53,7 @@ function processText(rawText) {
 		hasPrice = true
 		val = valueReg.exec(match[0])
 		if (!val) {
-			alert("RegEx borked")
+			alert("RegEx borked on " + match[0])
 		}
 		alert(match[0] + " : " + val[0])
 		if (val[0] > highCost) {
@@ -69,7 +69,7 @@ function processText(rawText) {
 		hasQuantity = true
 		val = valueReg.exec(match[0])
 		if (!val) {
-			alert("RegEx borked")
+			alert("RegEx borked on " + match[0])
 		}
 		alert(match[0] + " : " + val[0])
 		if (val[0] > largeQuantity) {
