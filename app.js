@@ -1,3 +1,7 @@
+var priceReg = /\$\d+\.\d{2,}/g;
+var quantReg = /\d*\.?\d{2,} +[kK][wW][hH]/g;
+var unitPrice = 0.21
+
 // Set constraints for the video stream
 var constraints = { 
 	video: 
@@ -34,6 +38,22 @@ function drawFrame() {
 		drawFrame()
 		}, 1000/30)
 }
+
+function processText(rawText) {
+	matchText = rawText
+	match = priceReg.exec(matchText)
+	while (match) {
+		alert(match[0])
+		match = priceReg.exec(matchText)
+	}
+	
+	matchText = rawText
+	match = quantReg.exec(matchText)
+	while (match) {
+		alert(match[0])
+		match = quantReg.exec(matchText)
+	}
+}
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth
@@ -54,6 +74,7 @@ cameraTrigger.onclick = function() {
 		  alert(result.text)
 		  cameraTrigger.disabled = false
 		  cameraTrigger.innerHTML = "Process"
+		  processText(result.text)
 		})
 		.catch(function(err) {
 		  console.error(err)
