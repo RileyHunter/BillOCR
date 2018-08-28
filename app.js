@@ -51,10 +51,10 @@ function processText(rawText) {
 	while (match) {
 		hasPrice = true
 		val = match[0].substring(1)
-		alert(match[0] + " : " + val)
+		//alert(match[0] + " : " + val)
 		if (val > highCost) {
 			highCost = val
-			alert(highCost)
+			//alert(highCost)
 		}
 		match = priceReg.exec(matchText)
 	}
@@ -64,10 +64,10 @@ function processText(rawText) {
 	while (match) {
 		hasQuantity = true
 		val = match[0].substring(0, match[0].indexOf(' '))
-		alert(match[0] + " : " + val)
+		//alert(match[0] + " : " + val)
 		if (val > largeQuantity) {
 			largeQuantity = val
-			alert(largeQuantity)
+			//alert(largeQuantity)
 		}
 		match = quantReg.exec(matchText)
 	}
@@ -105,7 +105,7 @@ cameraTrigger.onclick = function() {
 		  }
 		})
 		.then(function(result) {
-		  alert(result.text)
+		  //alert(result.text)
 		  cameraTrigger.disabled = false
 		  cameraTrigger.innerHTML = "Process"
 		  processText(result.text)
