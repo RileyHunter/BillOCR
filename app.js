@@ -52,6 +52,7 @@ function processText(rawText) {
 	while (match) {
 		hasPrice = true
 		val = valueReg.exec(match[0])[0]
+		alert(match[0] + " : " + val)
 		if (val > highCost) {
 			highCost = val
 			alert(highCost)
@@ -64,6 +65,7 @@ function processText(rawText) {
 	while (match) {
 		hasQuantity = true
 		val = valueReg.exec(match[0])[0]
+		alert(match[0] + " : " + val)
 		if (val > largeQuantity) {
 			largeQuantity = val
 			alert(largeQuantity)
