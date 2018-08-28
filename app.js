@@ -46,7 +46,7 @@ cameraTrigger.onclick = function() {
 	Tesseract.recognize(cameraSensor.getContext("2d"))
 		.progress(function(message) {
 		  console.log(message)
-		  if (message.status == "recognising text") {
+		  if (message.status == "recognizing text") {
 			  cameraTrigger.innerHTML = "Processing... [" + Math.round(100 * message.progress) + "]"
 		  }
 		})
