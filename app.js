@@ -74,12 +74,15 @@ function processText(rawText) {
 	
 	if (hasQuantity) {
 		ourPowerCost = Math.round(unitPrice * largeQuantity * 100) / 100
+		difference = highCost - ourPowerCost
+		opCostString = ourPowerCost.toFixed(2)
+		diffString = difference.toFixed(2)
 		if (hasPrice) {
 			alert("We think you used " + largeQuantity + " kWh, which cost you $" + highCost)
-			alert("With OurPower, this bill would have been $" + ourPowerCost + ", a difference of $" + (highCost - ourPowerCost))
+			alert("With OurPower, this bill would have been $" + opCostString + ", a difference of $" + diffString)
 		} else {
 			alert("We couldn't see a total bill, but we think you used " + largeQuantity + " kWh in this bill")
-			alert("With OurPower, this bill would have been $" + ourPowerCost)
+			alert("With OurPower, this bill would have been $" + opCostString)
 		}
 	} else { 
 		alert("We couldn't see the info we needed")
