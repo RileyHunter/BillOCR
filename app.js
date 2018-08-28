@@ -51,7 +51,10 @@ function processText(rawText) {
 	match = priceReg.exec(matchText)
 	while (match) {
 		hasPrice = true
-		val = valueReg.exec(match[0])[0]
+		val = valueReg.exec(match[0])
+		if (!val) {
+			alert("RegEx borked")
+		}
 		alert(match[0] + " : " + val)
 		if (val > highCost) {
 			highCost = val
