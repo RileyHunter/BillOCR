@@ -1,5 +1,5 @@
-var priceReg = /\$\d+\.\d{2,}/g;
-var quantReg = /\d*\.?\d{,2} +[kK][wW][hH]/g;
+var priceReg = /\$\d*\.?\d{2,}/g;
+var quantReg = /\d*\.?\d+ *[kK][wW][hH]/g;
 var valueReg = /\d*\.?\d+/g;
 var unitPrice = 0.21
 
