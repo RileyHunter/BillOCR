@@ -55,7 +55,7 @@ function processText(rawText) {
 		if (!val) {
 			alert("RegEx borked")
 		}
-		alert(match[0] + " : " + val)
+		alert(match[0] + " : " + val[0])
 		if (val > highCost) {
 			highCost = val
 			alert(highCost)
@@ -67,8 +67,11 @@ function processText(rawText) {
 	match = quantReg.exec(matchText)
 	while (match) {
 		hasQuantity = true
-		val = valueReg.exec(match[0])[0]
-		alert(match[0] + " : " + val)
+		val = valueReg.exec(match[0])
+		if (!val) {
+			alert("RegEx borked")
+		}
+		alert(match[0] + " : " + val[0])
 		if (val > largeQuantity) {
 			largeQuantity = val
 			alert(largeQuantity)
