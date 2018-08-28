@@ -1,6 +1,5 @@
 var priceReg = /\$\d*\.?\d{2,}/g;
 var quantReg = /\d*\.?\d+ *[kK][wW][hH]/g;
-var valueReg = /\d*\.?\d+/g;
 var unitPrice = 0.21
 
 // Set constraints for the video stream
@@ -51,13 +50,10 @@ function processText(rawText) {
 	match = priceReg.exec(matchText)
 	while (match) {
 		hasPrice = true
-		val = valueReg.exec(match[0])
-		if (!val) {
-			alert("RegEx borked on " + match[0])
-		}
-		alert(match[0] + " : " + val[0])
-		if (val[0] > highCost) {
-			highCost = val[0]
+		val = match[0].substring(1)
+		alert(match[0] + " : " + val)
+		if (val > highCost) {
+			highCost = val
 			alert(highCost)
 		}
 		match = priceReg.exec(matchText)
@@ -67,13 +63,10 @@ function processText(rawText) {
 	match = quantReg.exec(matchText)
 	while (match) {
 		hasQuantity = true
-		val = valueReg.exec(match[0])
-		if (!val) {
-			alert("RegEx borked on " + match[0])
-		}
-		alert(match[0] + " : " + val[0])
-		if (val[0] > largeQuantity) {
-			largeQuantity = val[0]
+		val = match[0].substring(0, match[0].indexOf(' '))
+		alert(match[0] + " : " + val)
+		if (val > largeQuantity) {
+			largeQuantity = val
 			alert(largeQuantity)
 		}
 		match = quantReg.exec(matchText)
