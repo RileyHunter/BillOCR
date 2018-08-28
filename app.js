@@ -1,5 +1,6 @@
 var priceReg = /\$\d+\.\d{2,}/g;
-var quantReg = /\d*\.?\d{2,} +[kK][wW][hH]/g;
+var quantReg = /\d*\.?\d{,2} +[kK][wW][hH]/g;
+var valueReg = /\d*\.?\d+/g;
 var unitPrice = 0.21
 
 // Set constraints for the video stream
@@ -40,18 +41,45 @@ function drawFrame() {
 }
 
 function processText(rawText) {
+	//Just retrieves and reports based on largest price/quantity for now
+	highCost = 0
+	largeQuantity = 0
+	hasPrice = false
+	hasQuantity = false
+	
 	matchText = rawText
 	match = priceReg.exec(matchText)
 	while (match) {
-		alert(match[0])
+		hasPrice = true
+		val = valueReg.exec(match)[0]
+		if (val > highCost) {
+			highCost = val
+		}
 		match = priceReg.exec(matchText)
 	}
 	
 	matchText = rawText
 	match = quantReg.exec(matchText)
 	while (match) {
-		alert(match[0])
+		hasQuantity = true
+		val = valueReg.exec(match)[0]
+		if (val > largeQuantity) {
+			largeQuantity = val
+		}
 		match = quantReg.exec(matchText)
+	}
+	
+	if (hasQuantity) {
+		ourPowerCost = Math.round(unitPrice * largeQuantity * 100) / 100
+		if (hasPrice) {
+			alert("We think you used " + largeQuantity + " kWh, which cost you $" + highCost)
+			alert("With OurPower, this bill would have been $" + ourPowerCost + ", a difference of $" + highCost - ourPowerCost")
+		} else {
+			alert("We couldn't see a total bill, but we think you used " + largeQuantity + " kWh in this bill")
+			alert("With OurPower, this bill would have been $" + ourPowerCost)
+		}
+	} else { 
+		alert("We couldn't see the info we needed")
 	}
 }
 // Take a picture when cameraTrigger is tapped
