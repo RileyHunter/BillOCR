@@ -41,16 +41,23 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0)
     cameraOutput.src = cameraSensor.toDataURL("image/webp")
     cameraOutput.classList.add("taken")
-	
+	cameraTrigger.disabled = true
+	cameraTrigger.innerHTML = "Processing..."
 	Tesseract.recognize(cameraSensor.getContext("2d"))
 		.progress(function(message) {
 		  console.log(message)
+		  if (message.status == "recognising text") {
+			  cameraTrigger.innerHTML = "Processing... [" + Math.round(100 * message.progress) + "]"
+		  }
 		})
 		.then(function(result) {
 		  alert(result.text)
+		  cameraTrigger.disabled = false
+		  cameraTrigger.innerHTML = "Process"
 		})
 		.catch(function(err) {
 		  console.error(err)
+		  cameraTrigger.innerHTML = "Error!"
 		});
 };
 // Start the video stream when the window loads

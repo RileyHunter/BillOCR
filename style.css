@@ -31,6 +31,10 @@ html, body {
     left: calc(50% - 100px);
 }
 
+#camera--trigger:disabled {
+	background-color: gray;
+}
+
 .taken {
     height: 100px!important;
     width: 100px!important;
