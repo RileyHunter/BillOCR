@@ -118,3 +118,13 @@ cameraTrigger.onclick = function() {
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
 
+// Annyang init/setup
+var commands = {
+	'show me *tag': alert
+}
+
+if (annyang) {
+	annyang.addCommands(commands)
+	annyang.start()
+}
+
