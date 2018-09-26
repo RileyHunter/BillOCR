@@ -137,5 +137,5 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.1")
+alert("V 0.2")
 
