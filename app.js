@@ -126,5 +126,6 @@ var commands = {
 if (annyang) {
 	annyang.addCommands(commands)
 	annyang.start()
+	alert("Annyang online")
 }
 
