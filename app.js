@@ -130,7 +130,7 @@ var alertLove = function() {
 if (annyang) {
 	var commands = {
 		'show me *words': alertText,
-		'i am riley': alertLove,
+		'i am Lauren': alertLove,
 		'i am mitsu': alertLove,
 	}
 	annyang.addCommands(commands)
@@ -139,5 +139,5 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.4.1")
+alert("V 0.4.2")
 
