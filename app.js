@@ -119,15 +119,16 @@ cameraTrigger.onclick = function() {
 window.addEventListener("load", cameraStart, false);
 
 // Annyang init/setup
-var commands = {
-	'show me *words': alertText
-}
+
 
 var alertText = function(words) {
 	alert(words)
 }
 
 if (annyang) {
+	var commands = {
+		'show me *words': alertText
+	}
 	annyang.addCommands(commands)
 	annyang.start()
 	annyang.addCallback('result', function(whatWasHeardArray) {
