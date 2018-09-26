@@ -97,9 +97,9 @@ function processText(rawText) {
 function showAlertBox(message, showButtons = false) {
 	alertBoxMessage.innerHTML = message;
 	if(showButtons) {
-		alertBoxButtons.style.visibility = "hidden"
+		alertBoxButtons.style.display = "none"
 	} else {
-		alertBoxButtons.style.visibility = "visible"
+		alertBoxButtons.style.display = "block"
 	}
 	alertBox.style.top = "0px"
 }
@@ -169,4 +169,4 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.4.3")
+alert("V 0.4.4")
