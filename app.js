@@ -17,8 +17,9 @@ const cameraView = document.querySelector("#camera--view"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger"),
 	alertBox = document.querySelector("#alertbox"),
-	alertBoxMessage = document.querySelector("#alertbox--message")
-	alertBoxButtons = document.querySelector("#alertbox--button--container")
+	alertBoxMessage = document.querySelector("#alertbox--message"),
+	alertBoxButtonsYesNo = document.querySelector("#alertbox--button--container--yesno"),
+	alertBoxButtonsOk = document.querySelector("#alertbox--button--container--ok")
 // Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
@@ -82,26 +83,33 @@ function processText(rawText) {
 		opCostString = ourPowerCost.toFixed(2)
 		diffString = difference.toFixed(2)
 		if (hasPrice) {
-			alert("We think you used " + largeQuantity + " kWh, which cost you $" + highCost)
-			alert("With OurPower, this bill would have been $" + opCostString + ", a difference of $" + diffString)
+			showAlertBox("We think you used " + largeQuantity + " kWh, which cost you $" + highCost + "<br>With OurPower, this bill would have been $" + opCostString + ", a difference of $" + diffString + "<br>Would you like to join OurPower?", true, false)
 		} else {
-			alert("We couldn't see a total bill, but we think you used " + largeQuantity + " kWh in this bill")
-			alert("With OurPower, this bill would have been $" + opCostString)
+			showAlertBox("We couldn't see a total bill, but we think you used " + largeQuantity + " kWh in this bill<br>With OurPower, this bill would have been $" + opCostString + "<br>Would you like to join OurPower?", true, false)
 		}
 	} else { 
-		showAlertBox("We couldn't find the info we needed")
+		showAlertBox("We couldn't find the info we needed", false, true)
 	}
 }
 
 //Show the alert box
-function showAlertBox(message, showButtons = false) {
+function showAlertBox(message, showYesNo = false, showOk = false) {
 	alertBoxMessage.innerHTML = message;
-	if(showButtons) {
-		alertBoxButtons.style.display = "block"
+	if(showYesNo) {
+		alertBoxButtonsYesNo.style.display = "block"
 	} else {
-		alertBoxButtons.style.display = "none"
+		alertBoxButtonsYesNo.style.display = "none"
+	}
+	if(showOk) {
+		alertBoxButtonsOk.style.display = "block"
+	} else {
+		alertBoxButtonsOk.style.display = "none"
 	}
 	alertBox.style.top = "0px"
+}
+
+function closeAlertBox() {
+	alertBox.style.top = "-230px"
 }
 
 // Take a picture when cameraTrigger is tapped
@@ -145,12 +153,12 @@ var alertLove = function() {
 
 var setAnswerYes = function() {
 	currentAnswer = "yes"
-	alertBox.style.top = "-230px"
+	closeAlertBox()
 }
 
 var setAnswerNo = function() {
 	currentAnswer = "no"
-	alertBox.style.top = "-230px"
+	closeAlertBox()
 }
 
 if (annyang) {

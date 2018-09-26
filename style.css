@@ -15,10 +15,18 @@ html, body {
 	transition: top 0.6s;
 }
 
-#alertbox--button--container {
-	margin-left: calc(50% - 200px);
+.alertbox--button--container {
 	top: 120px;
 	position: relative;
+	display: none;
+}
+
+#alertbox--button--container--yesno {
+	margin-left: calc(50% - 200px);
+}
+
+#alertbox--button--container--ok {
+	margin-left: calc(50% - 100px);
 }
 
 #alertbox--message {
@@ -26,6 +34,7 @@ html, body {
 	color: white;
 	font-size: 16px;
 	text-align: center;
+	padding-top: 30px;
 }
 
 #camera, #camera--view, #camera--sensor, #camera--output {
