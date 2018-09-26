@@ -21,6 +21,13 @@ html, body {
 	position: relative;
 }
 
+#alertbox--message {
+	width: 100%;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+
 #camera, #camera--view, #camera--sensor, #camera--output {
     position: fixed;
     height: 100%;
