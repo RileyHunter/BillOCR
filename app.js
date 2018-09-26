@@ -119,21 +119,22 @@ cameraTrigger.onclick = function() {
 window.addEventListener("load", cameraStart, false);
 
 // Annyang init/setup
-
-
 var alertText = function(words) {
 	alert(words)
 }
 
+var alertLove = function() {
+	alert("HELLO <3 LOTS OF LOVE FROM NEW ZEALAND")
+}
+
 if (annyang) {
 	var commands = {
-		'show me *words': alertText
+		'show me *words': alertText,
+		'i am riley': alertLove,
+		'i am mitsu': alertLove,
 	}
 	annyang.addCommands(commands)
 	annyang.start()
-	annyang.addCallback('result', function(whatWasHeardArray) {
-		console.log(whatWasHeardArray)
-	});
 } else {
 	alert("Annyang missing")
 }
