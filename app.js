@@ -130,6 +130,9 @@ var alertText = function(words) {
 if (annyang) {
 	annyang.addCommands(commands)
 	annyang.start()
+	annyang.addCallback('result', function(whatWasHeardArray) {
+		console.log(whatWasHeardArray)
+	});
 } else {
 	alert("Annyang missing")
 }
