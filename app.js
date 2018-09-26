@@ -177,4 +177,4 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.4.6")
+alert("V 0.4.7")
