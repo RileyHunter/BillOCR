@@ -1,6 +1,7 @@
 var priceReg = /\$\d*\.?\d{2,}/g;
 var quantReg = /\d*\.?\d+ *[kK][wW][hH]/g;
 var unitPrice = 0.21
+var currentAnswer = null
 
 // Set constraints for the video stream
 var constraints = { 
@@ -14,7 +15,10 @@ var constraints = {
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
-    cameraTrigger = document.querySelector("#camera--trigger")
+    cameraTrigger = document.querySelector("#camera--trigger"),
+	alertBox = document.querySelector("#alertbox"),
+	alertBoxMessage = document.querySelector("#alertbox--message")
+	alertBoxButtons = document.querySelector("#alertbox--button--container")
 // Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
@@ -85,9 +89,21 @@ function processText(rawText) {
 			alert("With OurPower, this bill would have been $" + opCostString)
 		}
 	} else { 
-		alert("We couldn't see the info we needed")
+		showAlertBox("We couldn't find the info we needed")
 	}
 }
+
+//Show the alert box
+function showAlertBox(message, showButtons = false) {
+	alertBoxMessage.innerHTML = message;
+	if(showButtons) {
+		alertBoxButtons.style.visibility = "hidden"
+	} else {
+		alertBoxButtons.style.visibility = "visible"
+	}
+	alertBox.style.top = "0px"
+}
+
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth
@@ -127,11 +143,25 @@ var alertLove = function() {
 	alert("HELLO <3 LOTS OF LOVE FROM NEW ZEALAND")
 }
 
+var setAnswerYes = function() {
+	currentAnswer = "yes"
+	alertBox.style.top = "-230px"
+}
+
+var setAnswerNo = function() {
+	currentAnswer = "no"
+	alertBox.style.top = "-230px"
+}
+
 if (annyang) {
 	var commands = {
 		'show me *words': alertText,
 		'i am Lauren': alertLove,
 		'i am mitsu': alertLove,
+		'okay': setAnswerYes,
+		'yes': setAnswerYes,
+		'no': setAnswerNo,
+		'cancel': setAnswerNo
 	}
 	annyang.addCommands(commands)
 	annyang.start()
@@ -139,5 +169,4 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.4.2")
-
+alert("V 0.4.3")

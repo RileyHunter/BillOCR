@@ -12,8 +12,10 @@
 	<script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
 </head>
 <body>
+
     <!-- Camera -->
     <main id="camera">
+
         <!-- Camera sensor -->
         <canvas id="camera--sensor"></canvas>
         <!-- Camera view -->
@@ -21,7 +23,18 @@
         <!-- Camera output -->
         <img src="//:0" alt="" id="camera--output"></img>
         <!-- Camera trigger -->
-        <button id="camera--trigger">Process</button>
+        <button id="camera--trigger" class="button">Process</button>
+		<!-- Alert Box -->
+		<div id="alertbox">
+			<div id="alertbox--message">
+			</div>
+			<div id="alertbox--button--container">
+				<button id="alertbox--button-yes" class="button" onClick="setAnswerYes()">Yes
+				</button>
+				<button id="alertbox--button-no" class="button" onClick="setAnswerNo()">No
+				</button>
+			</div>
+		</div>
     </main>
     <!-- Reference to your JavaScript file -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
