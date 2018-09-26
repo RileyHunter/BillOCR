@@ -127,5 +127,7 @@ if (annyang) {
 	annyang.addCommands(commands)
 	annyang.start()
 	alert("Annyang online")
+} else {
+	alert("No annyang")
 }
 
