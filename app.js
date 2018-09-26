@@ -130,8 +130,9 @@ var alertText = function(words) {
 if (annyang) {
 	annyang.addCommands(commands)
 	annyang.start()
-	alert("Annyang online")
 } else {
-	alert("No annyang")
+	alert("Annyang missing")
 }
+
+alert("V 0.1")
 
