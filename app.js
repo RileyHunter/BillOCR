@@ -120,7 +120,11 @@ window.addEventListener("load", cameraStart, false);
 
 // Annyang init/setup
 var commands = {
-	'show me *tag': alert
+	'show me *words': alertText
+}
+
+var alertText = function(words) {
+	alert(words)
 }
 
 if (annyang) {
