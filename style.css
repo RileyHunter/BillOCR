@@ -18,6 +18,7 @@ html, body {
 	top: 120px;
 	position: relative;
 	display: none;
+	margin: auto;
 }
 
 #alertbox--button--container--yesno {
