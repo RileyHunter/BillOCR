@@ -22,11 +22,11 @@ html, body {
 }
 
 #alertbox--button--container--yesno {
-	margin-left: calc(50% - 200px);
+	
 }
 
 #alertbox--button--container--ok {
-	margin-left: calc(50% - 100px);
+	
 }
 
 #alertbox--message {
@@ -51,7 +51,7 @@ html, body {
 #camera--trigger {
     position: fixed;
     bottom: 30px;
-    left: calc(50% - 100px);
+    left: 25%;
 }
 
 #camera--trigger:disabled {
@@ -70,7 +70,7 @@ html, body {
 }
 
 .button {
-	width: 150px;
+	width: 50%;
     background-color: black;
     color: white;
     font-size: 16px;
