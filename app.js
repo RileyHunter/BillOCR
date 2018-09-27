@@ -2,6 +2,7 @@ var priceReg = /\$\d*\.?\d{2,}/g;
 var quantReg = /\d*\.?\d+ *[kK][wW][hH]/g;
 var unitPrice = 0.21
 var currentAnswer = null
+var nextResponse = undefined
 
 // Set constraints for the video stream
 var constraints = { 
@@ -44,6 +45,37 @@ function drawFrame() {
 		}, 1000/30)
 }
 
+//CFG functions for interactivity flow
+function respond_noInfo() {
+	showAlertBox("We couldn't find the info we needed", false, true)
+}
+
+function respond_hasQuantity() {
+	currentAnswer = null
+	if (hasPrice) {
+		showAlertBox("We think you used " + largeQuantity + " kWh, which cost you $" + highCost + "<br>With OurPower, this bill would have been $" + opCostString + ", a difference of $" + diffString + "<br>Would you like to join OurPower?", true, false, respond_checkSwitch)
+	} else {
+		showAlertBox("We couldn't see a total bill, but we think you used " + largeQuantity + " kWh in this bill<br>With OurPower, this bill would have been $" + opCostString + "<br>Would you like to join OurPower?", true, false, respond_checkSwitch)
+	}
+}
+
+function respond_checkSwitch() {
+	if (currentAnswer == "yes") {
+		currentAnswer = null
+		showAlertBox("Switch initiated<br>Would you like to use your Apple Pay credit card to pay your power bill?", true, false, respond_checkCredit)
+	} else {
+		showAlertBox("Okay! Feel free to check again any time", false, true)
+	}
+}
+
+function respond_checkCredit() {
+	if (currentAnswer == "yes") {
+		showAlertBox("Great! We're all sorted then<br>Get in touch if you have any further questions", false, true)
+	} else {
+		showAlertBox("Okay! We'll still switch your power, but we'll contact you soon to organise billing", false, true)
+	}
+}
+
 function processText(rawText) {
 	//Just retrieves and reports based on largest price/quantity for now
 	highCost = 0
@@ -82,18 +114,16 @@ function processText(rawText) {
 		difference = highCost - ourPowerCost
 		opCostString = ourPowerCost.toFixed(2)
 		diffString = difference.toFixed(2)
-		if (hasPrice) {
-			showAlertBox("We think you used " + largeQuantity + " kWh, which cost you $" + highCost + "<br>With OurPower, this bill would have been $" + opCostString + ", a difference of $" + diffString + "<br>Would you like to join OurPower?", true, false)
-		} else {
-			showAlertBox("We couldn't see a total bill, but we think you used " + largeQuantity + " kWh in this bill<br>With OurPower, this bill would have been $" + opCostString + "<br>Would you like to join OurPower?", true, false)
-		}
+		currentAnswer = null
+		respond_hasQuantity()
+		
 	} else { 
-		showAlertBox("We couldn't find the info we needed", false, true)
+		respond_noInfo()
 	}
 }
 
 //Show the alert box
-function showAlertBox(message, showYesNo = false, showOk = false) {
+function showAlertBox(message, showYesNo = false, showOk = false, callback = undefined) {
 	alertBoxMessage.innerHTML = message;
 	if(showYesNo) {
 		alertBoxButtonsYesNo.style.display = "block"
@@ -106,10 +136,14 @@ function showAlertBox(message, showYesNo = false, showOk = false) {
 		alertBoxButtonsOk.style.display = "none"
 	}
 	alertBox.style.top = "0px"
+	nextResponse = callback
 }
 
 function closeAlertBox() {
 	alertBox.style.top = "-230px"
+	alertBoxButtonsOk.style.display = "none"
+	alertBoxButtonsYesNo.style.display = "none"
+	typeof nextResponse === 'function' && nextResponse();
 }
 
 // Take a picture when cameraTrigger is tapped
@@ -147,10 +181,6 @@ var alertText = function(words) {
 	alert(words)
 }
 
-var alertLove = function() {
-	alert("HELLO <3 LOTS OF LOVE FROM NEW ZEALAND")
-}
-
 var setAnswerYes = function() {
 	currentAnswer = "yes"
 	closeAlertBox()
@@ -164,8 +194,6 @@ var setAnswerNo = function() {
 if (annyang) {
 	var commands = {
 		'show me *words': alertText,
-		'i am Lauren': alertLove,
-		'i am mitsu': alertLove,
 		'okay': setAnswerYes,
 		'yes': setAnswerYes,
 		'no': setAnswerNo,
@@ -177,4 +205,4 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.4.7")
+alert("V 0.4.9")
