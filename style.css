@@ -23,11 +23,13 @@ html, body {
 
 #alertbox--button--container--yesno {
 	position: right;
+	width: 25%;
 	<!---This is to trial whether the box will behave >
 }
 
 #alertbox--button--container--ok {
 	position: center;
+	width: 50%;
 	<!---This is to trial whether the box will behave >
 }
 

@@ -205,4 +205,4 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.5.2a")
+alert("V 0.5.2b")
