@@ -22,7 +22,7 @@ html, body {
 }
 
 #alertbox--button--container--yesno {
-	
+	position: right;
 }
 
 #alertbox--button--container--ok {
@@ -56,6 +56,10 @@ html, body {
 
 #camera--trigger:disabled {
 	background-color: gray;
+}
+
+#camera--output {
+	display: none;
 }
 
 .taken {
