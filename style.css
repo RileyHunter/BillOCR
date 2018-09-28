@@ -23,10 +23,12 @@ html, body {
 
 #alertbox--button--container--yesno {
 	position: right;
+	<!---This is to trial whether the box will behave >
 }
 
 #alertbox--button--container--ok {
-	
+	position: center;
+	<!---This is to trial whether the box will behave >
 }
 
 #alertbox--message {
@@ -71,6 +73,7 @@ html, body {
     top: 20px;
     right: 20px;
     z-index: 2;
+	display: none;
 }
 
 .button {
