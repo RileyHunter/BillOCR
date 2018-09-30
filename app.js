@@ -4,6 +4,8 @@ var unitPrice = 0.21
 var currentAnswer = null
 var nextResponse = undefined
 
+
+
 // Set constraints for the video stream
 var constraints = { 
 	video: 
@@ -21,6 +23,9 @@ const cameraView = document.querySelector("#camera--view"),
 	alertBoxMessage = document.querySelector("#alertbox--message"),
 	alertBoxButtonsYesNo = document.querySelector("#alertbox--button--container--yesno"),
 	alertBoxButtonsOk = document.querySelector("#alertbox--button--container--ok")
+	
+showAlertBox("V 0.5.3", true, false)
+
 // Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
@@ -191,7 +196,7 @@ var setAnswerNo = function() {
 	closeAlertBox()
 }
 
-if (annyang) {
+if (typeof annyang != 'undefined') {
 	var commands = {
 		'show me *words': alertText,
 		'okay': setAnswerYes,
@@ -205,4 +210,4 @@ if (annyang) {
 	alert("Annyang missing")
 }
 
-alert("V 0.5.2b")
+
