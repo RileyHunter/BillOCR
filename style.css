@@ -38,6 +38,7 @@ html, body {
 	font-size: 16px;
 	text-align: center;
 	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 #camera, #camera--view, #camera--sensor, #camera--output {
