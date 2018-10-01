@@ -24,7 +24,7 @@ const cameraView = document.querySelector("#camera--view"),
 	alertBoxButtonsYesNo = document.querySelector("#alertbox--button--container--yesno"),
 	alertBoxButtonsOk = document.querySelector("#alertbox--button--container--ok")
 	
-showAlertBox("V 0.5.3", true, false)
+showAlertBox("V 0.5.3", false, false)
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
@@ -52,7 +52,7 @@ function drawFrame() {
 
 //CFG functions for interactivity flow
 function respond_noInfo() {
-	showAlertBox("We couldn't find the info we needed", false, true)
+	showAlertBox("We couldn't find the info we needed", false, false)
 }
 
 function respond_hasQuantity() {
@@ -69,15 +69,15 @@ function respond_checkSwitch() {
 		currentAnswer = null
 		showAlertBox("Switch initiated<br>Would you like to use your Apple Pay credit card to pay your power bill?", true, false, respond_checkCredit)
 	} else {
-		showAlertBox("Okay! Feel free to check again any time", false, true)
+		showAlertBox("Okay! Feel free to check again any time", false, false)
 	}
 }
 
 function respond_checkCredit() {
 	if (currentAnswer == "yes") {
-		showAlertBox("Great! We're all sorted then<br>Get in touch if you have any further questions", false, true)
+		showAlertBox("Great! We're all sorted then<br>Get in touch if you have any further questions", false, false)
 	} else {
-		showAlertBox("Okay! We'll still switch your power, but we'll contact you soon to organise billing", false, true)
+		showAlertBox("Okay! We'll still switch your power, but we'll contact you soon to organise billing", false, false)
 	}
 }
 
@@ -139,6 +139,9 @@ function showAlertBox(message, showYesNo = false, showOk = false, callback = und
 		alertBoxButtonsOk.style.display = "block"
 	} else {
 		alertBoxButtonsOk.style.display = "none"
+	}
+	if(!showYesNo && !showOk) {
+		setTimeout(function() { alertBox.style.top = "-230px" }, 5000)
 	}
 	alertBox.style.top = "0px"
 	nextResponse = callback

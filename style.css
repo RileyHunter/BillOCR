@@ -29,7 +29,7 @@ html, body {
 
 #alertbox--button--container--ok {
 	margin: auto;
-	width: 100%;
+	width: 50%;
 }
 
 #alertbox--message {
